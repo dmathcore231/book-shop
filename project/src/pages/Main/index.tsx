@@ -1,20 +1,26 @@
-import { Card } from "../../components/Card"
+import React, { useEffect } from "react"
+import { CardBook } from "../../components/CardBook"
 import { Pagination } from "../../components/Pagination"
+import { useAppDispatch, useAppSelector } from "../../hooks"
+import { fetchNewBooks } from "../../redux/newBooksSlice"
 
 export function Main(): JSX.Element {
+  const { books } = useAppSelector(state => state.newBooks)
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(fetchNewBooks())
+  }, [dispatch])
+
+  function renderBooks() {
+    return books.map((book) => {
+      return <CardBook key={book.isbn13} bookData={book} />
+    })
+  }
   return (
     <div className="new-releases">
       <h3 className="new-releases__title pb-3"> NEW RELEASES BOOKS</h3>
       <div className="new-releases__content d-flex flex-wrap gap-4 justify-content-center border-bottom pb-3">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {renderBooks()}
       </div>
       <div className="new-releases__pagination d-flex justify-content-center pt-4">
         <Pagination />

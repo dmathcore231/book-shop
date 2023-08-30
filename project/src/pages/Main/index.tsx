@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import { CardBook } from "../../components/CardBook"
 import { Pagination } from "../../components/Pagination"
 import { useAppDispatch, useAppSelector } from "../../hooks"
@@ -7,10 +7,10 @@ import { fetchNewBooks } from "../../redux/newBooksSlice"
 export function Main(): JSX.Element {
   const { books } = useAppSelector(state => state.newBooks)
   const dispatch = useAppDispatch()
+
   useEffect(() => {
     dispatch(fetchNewBooks())
   }, [dispatch])
-
   function renderBooks() {
     return books.map((book) => {
       return <CardBook key={book.isbn13} bookData={book} />

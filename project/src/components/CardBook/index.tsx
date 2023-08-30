@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 
 interface CardBookProps {
   bookData: {
@@ -13,7 +14,7 @@ interface CardBookProps {
 export function CardBook(props: CardBookProps): JSX.Element {
   return (
     <div className="card border-0" style={{ width: '22rem' }}>
-      <a href="#" className="card-link link-underline-light link-dark">
+      <Link to={`/book/${props.bookData.isbn13}`} className="card-link link-underline-light link-dark">
         <img src={props.bookData.image} className="card-img-top" alt="..." />
         <div className="card-body d-flex flex-column gap-3">
           <h5 className="card-title">{props.bookData.title}</h5>
@@ -25,7 +26,7 @@ export function CardBook(props: CardBookProps): JSX.Element {
             </div>
           </div>
         </div>
-      </a>
+      </Link>
     </div >
   )
 }

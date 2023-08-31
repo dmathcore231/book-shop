@@ -12,7 +12,8 @@ export interface NewBooksResponse {
 }
 
 export interface NewBooksState {
-  error: string
+  error: boolean
+  loading: boolean
   total: string
   books: NewBooks[]
 }

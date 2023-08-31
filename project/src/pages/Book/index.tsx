@@ -2,15 +2,25 @@ import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../hooks"
 import { fetchBook } from "../../redux/bookByIsbn13Slice"
 import { useParams } from "react-router-dom"
+import { Spinner } from "../../components/Spinner"
+import { Error } from "../../components/Error"
 
 export function Book(): JSX.Element {
   const { isbn13 = '' } = useParams()
-  const { book } = useAppSelector(state => state.bookByIsbn13)
+  const { book, loading, error } = useAppSelector(state => state.bookByIsbn13)
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(fetchBook(isbn13))
   }, [dispatch, isbn13])
 
+  if (loading) {
+    return <Spinner />
+  }
+
+  if (error) {
+    return <Error>
+      Oops! Something went wrong! Try later</Error>
+  }
   return (
     <div className="book">
       <h3 className="book__title pb-3">{book.title}</h3>

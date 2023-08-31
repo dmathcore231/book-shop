@@ -3,14 +3,25 @@ import { CardBook } from "../../components/CardBook"
 import { Pagination } from "../../components/Pagination"
 import { useAppDispatch, useAppSelector } from "../../hooks"
 import { fetchNewBooks } from "../../redux/newBooksSlice"
+import { Spinner } from "../../components/Spinner"
+import { Error } from "../../components/Error"
 
 export function Main(): JSX.Element {
-  const { books } = useAppSelector(state => state.newBooks)
+  const { books, loading, error } = useAppSelector(state => state.newBooks)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(fetchNewBooks())
   }, [dispatch])
+
+  if (loading) {
+    return <Spinner />
+  }
+
+  if (error) {
+    return <Error> Oops! Our servers are tired! Please try later</Error>
+  }
+
   function renderBooks() {
     return books.map((book) => {
       return <CardBook key={book.isbn13} bookData={book} />

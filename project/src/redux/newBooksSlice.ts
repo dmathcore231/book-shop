@@ -10,7 +10,8 @@ export const fetchNewBooks = createAsyncThunk('books/fetchNewBooks', async () =>
 export const newBooksSlice = createSlice({
   name: 'newBooks',
   initialState: {
-    error: '',
+    error: false,
+    loading: false,
     total: '',
     books: [] as NewBooks[],
   } as NewBooksState,
@@ -18,8 +19,18 @@ export const newBooksSlice = createSlice({
   reducers: {},
 
   extraReducers: (builder) => {
+    builder.addCase(fetchNewBooks.pending, (state) => {
+      state.loading = true
+    })
+
     builder.addCase(fetchNewBooks.fulfilled, (state, action) => {
+      state.loading = false
       state.books = action.payload
+    })
+
+    builder.addCase(fetchNewBooks.rejected, state => {
+      state.loading = false
+      state.error = true
     })
   }
 })

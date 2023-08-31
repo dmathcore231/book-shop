@@ -1,10 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { requestNewBooks } from "../services/books"
-import { NewBooks, NewBooksState } from "../interfaces/book"
+import { requestNewBooks, requestBookByIsbn13 } from "../services/books"
+import { NewBooks, NewBooksState, BookByIsbn13 } from "../interfaces/book"
 
 export const fetchNewBooks = createAsyncThunk('books/fetchNewBooks', async () => {
   const { books } = await requestNewBooks()
-  return books
+  const listIsbn13 = books.map((book) => book.isbn13)
+  const booksPromises = listIsbn13.map((isbn13) => requestBookByIsbn13(isbn13))
+  const dataExtensionBooks = await Promise.all(booksPromises)
+  return dataExtensionBooks as BookByIsbn13[]
 })
 
 export const newBooksSlice = createSlice({

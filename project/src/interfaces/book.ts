@@ -15,7 +15,7 @@ export interface NewBooksState {
   error: boolean
   loading: boolean
   total: string
-  books: NewBooks[]
+  books: BookByIsbn13[]
 }
 
 // isbn13

@@ -4,6 +4,7 @@ import { fetchBook } from "../../redux/bookByIsbn13Slice"
 import { useParams } from "react-router-dom"
 import { Spinner } from "../../components/Spinner"
 import { Error } from "../../components/Error"
+import { Rating } from "../../components/Rating"
 
 export function Book(): JSX.Element {
   const { isbn13 = '' } = useParams()
@@ -36,9 +37,7 @@ export function Book(): JSX.Element {
             <div className="book-card-preview__item d-flex justify-content-between gap-5">
               <div className="book-card-preview__price"><h4>{book.price}</h4></div>
               <div className="book-card-preview__rating">
-                <img className="img-fluid" src="/src/images/rating.png" alt="" />
-                {/* заглушка рейтинг */}
-                {book.rating}
+                <Rating rating={book.rating} />
               </div>
             </div>
             <div className="book-card-preview__item d-flex justify-content-between gap-5">

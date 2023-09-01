@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { requestBookByIsbn13 } from "../services/books"
-import { BookByIsbn13 } from "../interfaces/book"
+import { BookByIsbn13, BookByIsbn13State } from "../interfaces/book"
 
 export const fetchBook = createAsyncThunk('book/fetchBook', async (isbn13: string) => {
   return await requestBookByIsbn13(isbn13)
@@ -12,7 +12,7 @@ export const bookByIsbn13Slice = createSlice({
     loading: false,
     error: false,
     book: {} as BookByIsbn13,
-  },
+  } as BookByIsbn13State,
 
   reducers: {},
 

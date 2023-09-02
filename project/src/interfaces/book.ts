@@ -14,8 +14,7 @@ export interface NewBooksResponse {
 export interface NewBooksState {
   error: boolean
   loading: boolean
-  total: string
-  books: BookByIsbn13[]
+  books: MainBook[]
 }
 
 // isbn13
@@ -42,5 +41,11 @@ export interface BookByIsbn13 {
 export interface BookByIsbn13State {
   error: boolean
   loading: boolean
-  book: BookByIsbn13
+  book: MainBook
+}
+
+// --main book (full data)
+
+export interface MainBook extends BookByIsbn13 {
+ isFavorite: boolean
 }

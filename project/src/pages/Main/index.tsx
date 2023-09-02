@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from "../../hooks"
 import { fetchNewBooks } from "../../redux/newBooksSlice"
 import { Spinner } from "../../components/Spinner"
 import { Error } from "../../components/Error"
+import { getDataBooksLocalStorage } from "../../helpers"
+import { MainBook } from "../../interfaces/book"
 
 export function Main(): JSX.Element {
   const { books, loading, error } = useAppSelector(state => state.newBooks)
@@ -14,19 +16,29 @@ export function Main(): JSX.Element {
     dispatch(fetchNewBooks())
   }, [dispatch])
 
-  if (loading) {
-    return <Spinner />
-  }
-
-  if (error) {
-    return <Error> Oops! Our servers are tired! Please try later</Error>
-  }
-
   function renderBooks() {
-    return books.map((book) => {
-      return <CardBook key={book.isbn13} bookData={book} />
-    })
+    const dataLocalStorage = getDataBooksLocalStorage()
+
+    if (dataLocalStorage.length !== 0) {
+      return dataLocalStorage.map((book: MainBook) => {
+        return <CardBook key={book.isbn13} bookData={book} />
+      })
+    } else {
+
+      if (loading) {
+        return <Spinner />
+      }
+
+      if (error) {
+        return <Error> Oops! Our servers are tired! Please try later</Error>
+      }
+
+      return books.map((book: MainBook) => {
+        return <CardBook key={book.isbn13} bookData={book} />
+      })
+    }
   }
+
   return (
     <div className="new-releases">
       <h3 className="new-releases__title pb-3"> NEW RELEASES BOOKS</h3>

@@ -5,6 +5,7 @@ import { Book } from './pages/Book'
 import { Authorization } from './pages/Authorization'
 import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
+import { Search } from './pages/Search'
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
             element: <SignUp />
           }
         ]
+      },
+      {
+        path: '/search/:searchQuery',
+        element: <Search />
       }
     ]
   }

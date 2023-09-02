@@ -47,5 +47,5 @@ export interface BookByIsbn13State {
 // --main book (full data)
 
 export interface MainBook extends BookByIsbn13 {
- isFavorite: boolean
+  isFavorite: boolean
 }

@@ -16,6 +16,7 @@ export interface NewBooksState {
   loading: boolean
   books: MainBook[]
   searchQuery: string
+  limit: number
 }
 
 // isbn13

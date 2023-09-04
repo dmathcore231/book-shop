@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { Main } from './pages/Main'
 import { Layout } from './components/Layout'
 import { Book } from './pages/Book'
@@ -13,6 +13,10 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
+        element: <Navigate to='pages/1' replace={true} />
+      },
+      {
+        path: 'pages/:pageNumber',
         element: <Main />
       },
       {

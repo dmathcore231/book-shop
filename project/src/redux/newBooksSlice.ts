@@ -22,6 +22,7 @@ export const newBooksSlice = createSlice({
     loading: false,
     books: getDataBooksLocalStorage(),
     searchQuery: '',
+    limit: 6,
   } as NewBooksState,
 
   reducers: {

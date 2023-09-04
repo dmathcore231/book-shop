@@ -1,16 +1,17 @@
 import { useEffect } from "react"
-import { CardBook } from "../../components/CardBook"
 import { Pagination } from "../../components/Pagination"
 import { useAppDispatch, useAppSelector } from "../../hooks"
 import { fetchNewBooks } from "../../redux/newBooksSlice"
 import { Spinner } from "../../components/Spinner"
 import { Error } from "../../components/Error"
 import { getDataBooksLocalStorage } from "../../helpers"
-import { MainBook } from "../../interfaces/book"
+import { useParams } from "react-router-dom"
+import { _getBookData } from "../../helpers/index"
 
 export function Main(): JSX.Element {
-  const { books, loading, error } = useAppSelector(state => state.newBooks)
+  const { books, loading, error, limit } = useAppSelector(state => state.newBooks)
   const dispatch = useAppDispatch()
+  const { pageNumber } = useParams()
 
   useEffect(() => {
     dispatch(fetchNewBooks())
@@ -18,11 +19,11 @@ export function Main(): JSX.Element {
 
   function renderBooks() {
     const dataLocalStorage = getDataBooksLocalStorage()
+    const startIndex = (Number(pageNumber) - 1) * limit
+    const endIndex = startIndex + limit
 
     if (dataLocalStorage.length !== 0) {
-      return dataLocalStorage.map((book: MainBook) => {
-        return <CardBook key={book.isbn13} bookData={book} />
-      })
+      return _getBookData(dataLocalStorage, startIndex, endIndex)
     } else {
 
       if (loading) {
@@ -33,9 +34,7 @@ export function Main(): JSX.Element {
         return <Error> Oops! Our servers are tired! Please try later</Error>
       }
 
-      return books.map((book: MainBook) => {
-        return <CardBook key={book.isbn13} bookData={book} />
-      })
+      return _getBookData(books, startIndex, endIndex)
     }
   }
 
@@ -46,7 +45,7 @@ export function Main(): JSX.Element {
         {renderBooks()}
       </div>
       <div className="new-releases__pagination d-flex justify-content-center pt-4">
-        <Pagination />
+        <Pagination pageUrl="pages" pagesCounter={Math.ceil(books.length / limit)} />
       </div>
       <div className="new-releases__subscribe d-flex flex-column align-items-start m-3 p-3 gap-3 bg-light">
         <h3 className="new-releases__subscribe-title">SUBSCRIBE TO NEWSLETTER</h3>

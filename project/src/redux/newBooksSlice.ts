@@ -3,23 +3,25 @@ import { requestNewBooks, requestBookByIsbn13 } from "../services/books"
 import { NewBooksState, MainBook } from "../interfaces/book"
 import { getDataBooksLocalStorage, setDataBooksLocalStorage } from "../helpers/index"
 
-export const fetchNewBooks = createAsyncThunk('books/fetchNewBooks', async () => {
-  const { books } = await requestNewBooks()
-  const listIsbn13 = books.map((book) => book.isbn13)
-  const booksPromises = listIsbn13.map((isbn13) => requestBookByIsbn13(isbn13))
-  const dataExtensionBooks = await Promise.all(booksPromises)
-  const addFavorites = dataExtensionBooks.map((book) => {
-    return { ...book, isFavorite: false }
+export const fetchNewBooks = createAsyncThunk('books/fetchNewBooks',
+  async (searchQuery?: string | undefined) => {
+    const { books } = await requestNewBooks(searchQuery)
+    const listIsbn13 = books.map((book) => book.isbn13)
+    const booksPromises = listIsbn13.map((isbn13) => requestBookByIsbn13(isbn13))
+    const dataExtensionBooks = await Promise.all(booksPromises)
+    const addFavorites = dataExtensionBooks.map((book) => {
+      return { ...book, isFavorite: false }
+    })
+    return addFavorites as MainBook[]
   })
-  return addFavorites as MainBook[]
-})
 
 export const newBooksSlice = createSlice({
   name: 'newBooks',
   initialState: {
     error: false,
     loading: false,
-    books: getDataBooksLocalStorage()
+    books: getDataBooksLocalStorage(),
+    searchQuery: '',
   } as NewBooksState,
 
   reducers: {

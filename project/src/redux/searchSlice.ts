@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, } from "@reduxjs/toolkit"
 import { requestSearch } from "../services/books"
+import { NewBooks } from "../interfaces/book"
 
 export const fetchSearch = createAsyncThunk('search/fetchSearch', async (query: string) => {
   return await requestSearch(query)
@@ -8,7 +9,7 @@ export const fetchSearch = createAsyncThunk('search/fetchSearch', async (query: 
 export const searchSlice = createSlice({
   name: 'searchBook',
   initialState: {
-    data: [],
+    data: [] as NewBooks[],
   },
 
   reducers: {},

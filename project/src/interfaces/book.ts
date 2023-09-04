@@ -15,6 +15,7 @@ export interface NewBooksState {
   error: boolean
   loading: boolean
   books: MainBook[]
+  searchQuery: string
 }
 
 // isbn13

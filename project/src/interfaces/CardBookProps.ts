@@ -1,5 +1,7 @@
-import { BookByIsbn13 } from "../interfaces/book"
+import { MainBook } from "../interfaces/book"
 
 export interface CardBookProps {
-  bookData: BookByIsbn13
+  bookData: MainBook
+  cardSize: 'm' | 'xl'
+  onClickCancel: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }

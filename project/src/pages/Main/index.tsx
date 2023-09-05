@@ -18,7 +18,7 @@ export function Main(): JSX.Element {
   }, [dispatch])
 
   function renderBooks() {
-    const dataLocalStorage = getDataBooksLocalStorage()
+    const dataLocalStorage = getDataBooksLocalStorage('books')
     const startIndex = (Number(pageNumber) - 1) * limit
     const endIndex = startIndex + limit
 

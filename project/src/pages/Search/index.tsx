@@ -4,27 +4,18 @@ import { useAppDispatch, useAppSelector } from "../../hooks/index"
 import { fetchSearch } from "../../redux/searchSlice"
 import { MainBook } from "../../interfaces/book"
 import { CardBook } from "../../components/CardBook"
-import { Spinner } from "../../components/Spinner"
-import { Error } from "../../components/Error"
 
 export function Search(): JSX.Element {
   const { searchQuery } = useParams()
   const dispatch = useAppDispatch()
   const { data } = useAppSelector(state => state.search)
-  const { books, loading, error } = useAppSelector(state => state.newBooks)
+  const { books } = useAppSelector(state => state.newBooks)
   const findBooks = books.filter((book: MainBook) => book.title.includes(searchQuery as string))
   console.log(data)
   useEffect(() => {
     dispatch(fetchSearch(searchQuery as string))
   }, [dispatch, searchQuery])
 
-  if (loading) {
-    return <Spinner />
-  }
-
-  if (error) {
-    return <Error> Oops! Our servers are tired! Please try later</Error>
-  }
 
   function renderBooks() {
     return findBooks.map((book: MainBook) => {

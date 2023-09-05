@@ -6,6 +6,7 @@ import { Authorization } from './pages/Authorization'
 import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
 import { Search } from './pages/Search'
+import { Cart } from './pages/Cart'
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: '/search/:searchQuery',
         element: <Search />
+      },
+      {
+        path: '/cart',
+        element: <Cart />
       }
     ]
   }

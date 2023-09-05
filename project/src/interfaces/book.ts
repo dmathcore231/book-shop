@@ -50,4 +50,5 @@ export interface BookByIsbn13State {
 
 export interface MainBook extends BookByIsbn13 {
   isFavorite: boolean
+  inCart: boolean
 }

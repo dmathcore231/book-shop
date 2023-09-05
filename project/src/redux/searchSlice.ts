@@ -16,7 +16,7 @@ export const searchSlice = createSlice({
 
   extraReducers: builder => {
     builder.addCase(fetchSearch.fulfilled, (state, action) => {
-      state.data = action.payload.books
+      state.data = action.payload
     })
   }
 })

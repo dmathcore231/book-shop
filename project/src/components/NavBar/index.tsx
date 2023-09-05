@@ -11,7 +11,7 @@ export function NavBar(): JSX.Element {
         <a href="#" className="icon-group__item p-3">
           <img className="icon-group__img img-fluid" src="/src/images/heart-icon.png" alt="" />
         </a>
-        <a href="#" className="icon-group__item p-3">
+        <a href="/cart" className="icon-group__item p-3">
           <img className="icon-group__img img-fluid" src="/src/images/shop-bag.png" alt="" />
         </a>
         <a href="/authorization/sign_in" className="icon-group__item p-3">

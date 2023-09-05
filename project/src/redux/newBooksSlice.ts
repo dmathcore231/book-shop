@@ -10,7 +10,7 @@ export const fetchNewBooks = createAsyncThunk('books/fetchNewBooks',
     const booksPromises = listIsbn13.map((isbn13) => requestBookByIsbn13(isbn13))
     const dataExtensionBooks = await Promise.all(booksPromises)
     const addFavorites = dataExtensionBooks.map((book) => {
-      return { ...book, isFavorite: false }
+      return { ...book, isFavorite: false, inCart: false }
     })
     return addFavorites as MainBook[]
   })
@@ -20,18 +20,33 @@ export const newBooksSlice = createSlice({
   initialState: {
     error: false,
     loading: false,
-    books: getDataBooksLocalStorage(),
+    books: getDataBooksLocalStorage('books'),
     searchQuery: '',
     limit: 6,
   } as NewBooksState,
 
   reducers: {
     myFavorites: (state, action: PayloadAction<MainBook>) => {
-      const updatedBook = { ...action.payload, isFavorite: !action.payload.isFavorite }
-      const index = state.books.findIndex((book) => book.isbn13 === updatedBook.isbn13)
-      state.books[index] = updatedBook
-      setDataBooksLocalStorage(state.books)
+      const dataFavorites = action.payload
+      const dataInLocalStorage = getDataBooksLocalStorage('books')
+      const index = dataInLocalStorage.findIndex((book) => book.isbn13 === dataFavorites.isbn13)
+      if (index !== -1) {
+        dataInLocalStorage[index].isFavorite = !dataInLocalStorage[index].isFavorite
+        setDataBooksLocalStorage(dataInLocalStorage, 'books')
+        state.books = [...dataInLocalStorage]
+      }
     },
+
+    setCart: (state, action: PayloadAction<MainBook>) => {
+      const dataCart = action.payload
+      const dataInLocalStorage = getDataBooksLocalStorage('books')
+      const index = dataInLocalStorage.findIndex((book) => book.isbn13 === dataCart.isbn13)
+      if (index !== -1) {
+        dataInLocalStorage[index].inCart = !dataInLocalStorage[index].inCart
+        setDataBooksLocalStorage(dataInLocalStorage, 'books')
+        state.books = [...dataInLocalStorage]
+      }
+    }
   },
 
   extraReducers: (builder) => {
@@ -42,8 +57,8 @@ export const newBooksSlice = createSlice({
     builder.addCase(fetchNewBooks.fulfilled, (state, action: PayloadAction<MainBook[]>) => {
       state.loading = false
       state.books = action.payload
-      if (getDataBooksLocalStorage().length !== state.books.length) {
-        setDataBooksLocalStorage(action.payload)
+      if (getDataBooksLocalStorage('books').length !== state.books.length) {
+        setDataBooksLocalStorage(action.payload, 'books')
       }
     })
 
@@ -55,7 +70,7 @@ export const newBooksSlice = createSlice({
 })
 
 export const newBooksReducer = newBooksSlice.reducer
-export const { myFavorites } = newBooksSlice.actions
+export const { myFavorites, setCart } = newBooksSlice.actions
 
 
 

@@ -27,7 +27,7 @@ export function CardBook({ bookData, cardSize, onClickCancel }: CardBookProps): 
           <div className="card__img">
             <img src={bookData.image} alt="" />
           </div>
-          <div className='card__data d-flex flex-column gap-4 justify-content-center'>
+          <div className='card__data d-flex flex-column gap-4 justify-content-center' style={{ minWidth: '400px', maxWidth: '450px' }}>
             <div className='card__title'>
               <h5> {bookData.title}</h5>
             </div>

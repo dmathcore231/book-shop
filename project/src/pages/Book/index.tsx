@@ -4,7 +4,7 @@ import { fetchBook } from "../../redux/bookByIsbn13Slice"
 import { useParams } from "react-router-dom"
 import { Spinner } from "../../components/Spinner"
 import { Error } from "../../components/Error"
-import { myFavorites, setCart } from "../../redux/newBooksSlice"
+import { changeMyFavorites, changeCart } from "../../redux/newBooksSlice"
 import { MainBook } from "../../interfaces/book"
 import { getDataBooksLocalStorage } from "../../helpers"
 import { BookContent } from "../../components/BookContent"
@@ -35,11 +35,11 @@ export function Book(): JSX.Element {
       : books.find((book) => book.isbn13 === isbn13)
 
     const handleClickAddMyFavorites = () => {
-      dispatch(myFavorites(data as MainBook))
+      dispatch(changeMyFavorites(data as MainBook))
     }
 
     const handleClickAddCart = () => {
-      dispatch(setCart(data as MainBook))
+      dispatch(changeCart(data as MainBook))
     }
 
     return (

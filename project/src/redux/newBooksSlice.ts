@@ -26,7 +26,7 @@ export const newBooksSlice = createSlice({
   } as NewBooksState,
 
   reducers: {
-    myFavorites: (state, action: PayloadAction<MainBook>) => {
+    changeMyFavorites: (state, action: PayloadAction<MainBook>) => {
       const dataFavorites = action.payload
       const dataInLocalStorage = getDataBooksLocalStorage('books')
       const index = dataInLocalStorage.findIndex((book) => book.isbn13 === dataFavorites.isbn13)
@@ -37,7 +37,7 @@ export const newBooksSlice = createSlice({
       }
     },
 
-    setCart: (state, action: PayloadAction<MainBook>) => {
+    changeCart: (state, action: PayloadAction<MainBook>) => {
       const dataCart = action.payload
       const dataInLocalStorage = getDataBooksLocalStorage('books')
       const index = dataInLocalStorage.findIndex((book) => book.isbn13 === dataCart.isbn13)
@@ -70,7 +70,7 @@ export const newBooksSlice = createSlice({
 })
 
 export const newBooksReducer = newBooksSlice.reducer
-export const { myFavorites, setCart } = newBooksSlice.actions
+export const { changeMyFavorites, changeCart } = newBooksSlice.actions
 
 
 

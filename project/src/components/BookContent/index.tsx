@@ -2,10 +2,12 @@ import { BookContentProps } from "../../interfaces/BookContentProps"
 import { Rating } from "../Rating"
 import heart from '../../images/heartDefault.png'
 import heartActive from '../../images/heartActive.png'
+import { LinkBackPage } from "../LinkBackPage"
 
 export function BookContent({ onClickFavorite, onClickCart, data }: BookContentProps): JSX.Element {
   return (
-    <div className="book">
+    <div className="book d-flex flex-column gap-3">
+      <LinkBackPage />
       <h3 className="book__title pb-3">{data.title}</h3>
       <div className="book__content">
         <div className="book-card d-flex justify-content-between">

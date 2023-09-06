@@ -1,17 +1,15 @@
 import { SearchInput } from "../SearchInput"
 import { MainBook } from "../../interfaces/book"
-import { useAppSelector } from "../../hooks"
 import Logo from "../../images/logo.png"
 import Favorites from "../../images/heart-icon.png"
 import ShopBag from "../../images/shop-bag.png"
 import UserIcon from "../../images/user-icon.png"
 import ShopBagActive from "../../images/shopping-bag-active.png"
+import { getDataBooksLocalStorage } from "../../helpers"
 
 export function NavBar(): JSX.Element {
-  const { books } = useAppSelector(state => state.newBooks)
-
   function renderIconCart(): string {
-    const dataLocalStorage = books
+    const dataLocalStorage = getDataBooksLocalStorage('books')
     const bookWithInCart = dataLocalStorage.some((book: MainBook) => book.inCart === true)
     return bookWithInCart ? ShopBagActive : ShopBag
   }

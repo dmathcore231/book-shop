@@ -16,8 +16,12 @@ export function BookContent({ onClickFavorite, onClickCart, data }: BookContentP
           <div className="book-card__img-wrapper d-flex">
             <img className="book-card__img" src={data.image} alt="" />
             <div className="book-card__favorite-icon">
-              <button className="btn" onClick={onClickFavorite}>
-                {<img src={data.isFavorite ? heartActive : heart} alt="" className="img-fluid rounded-end" />}
+              <button className="btn btn-dark p-3" onClick={onClickFavorite}>
+                {<img
+                  src={data.isFavorite ? heartActive : heart}
+                  alt=""
+                  className="btn__img img-fluid"
+                  style={{ width: '20px' }} />}
               </button>
             </div>
           </div>

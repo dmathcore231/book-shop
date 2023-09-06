@@ -7,6 +7,8 @@ import ShopBag from "../../images/shop-bag.png"
 import UserIcon from "../../images/user-icon.png"
 import ShopBagActive from "../../images/shopping-bag-active.png"
 import { useAppSelector } from "../../hooks"
+import { Link } from "react-router-dom"
+import './styles.scss'
 
 export function NavBar(): JSX.Element {
   const { books } = useAppSelector(state => state.newBooks)
@@ -29,15 +31,24 @@ export function NavBar(): JSX.Element {
       </a>
       <SearchInput />
       <div className="icon-group d-flex ">
-        <a href="/favorites" className="icon-group__item p-3">
-          <img className="icon-group__img img-fluid" src={renderIconFavorites()} alt="" />
-        </a>
-        <a href="/cart" className="icon-group__item p-3">
-          <img className="icon-group__img img-fluid" src={renderIconCart()} alt="" />
-        </a>
-        <a href="/authorization/sign_in" className="icon-group__item p-3">
-          <img className="icon-group__img img-fluid" src={UserIcon} alt="" />
-        </a>
+        <Link to="/favorites" className="icon-group__item p-3">
+          <img
+            className="icon-group__img"
+            src={renderIconFavorites()}
+            alt="My favorites icon" />
+        </Link>
+        <Link to="/cart" className="icon-group__item p-3">
+          <img
+            className="icon-group__img"
+            src={renderIconCart()}
+            alt="Cart icon" />
+        </Link>
+        <Link to="/authorization/sign_in" className="icon-group__item p-3">
+          <img
+            className="icon-group__img"
+            src={UserIcon}
+            alt=" User icon" />
+        </Link>
       </div>
     </nav>
   )

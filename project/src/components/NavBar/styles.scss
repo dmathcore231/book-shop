@@ -1,0 +1,11 @@
+.icon-group {
+  display: flex;
+  gap: 1rem;
+
+  &__item {
+    max-width: 52px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

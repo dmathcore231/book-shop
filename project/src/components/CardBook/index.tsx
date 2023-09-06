@@ -6,8 +6,20 @@ import IconDecrement from '../../images/Minus.png'
 import IconIncrement from '../../images/Plus.png'
 import heart from '../../images/FavoriteIconDefault.png'
 import heartActive from '../../images/FavoriteIconActive.png'
+import cancelIconHover from '../../images/CancelHover.png'
+import { useState } from 'react'
 
 export function CardBook({ bookData, cardType, onClick }: CardBookProps): JSX.Element {
+  const [isHover, setIsHover] = useState(false)
+
+  function handleMouseEnter() {
+    setIsHover(true)
+  }
+
+  function handleMouseLeave() {
+    setIsHover(false)
+  }
+
   function getNumberFromBookDataPrice() {
     return (parseFloat(bookData.price.replace('$', '')) * bookData.counterValue).toFixed(2)
   }
@@ -56,9 +68,9 @@ export function CardBook({ bookData, cardType, onClick }: CardBookProps): JSX.El
           <div className='card__price d-flex align-items-center' style={{ minWidth: '120px' }}>
             <h3>${getNumberFromBookDataPrice()}</h3>
           </div>
-          <div className='card__cancel d-flex align-items-center me-5'>
-            <button className='btn' onClick={onClick?.cancel}>
-              <img src={cancelIcon} alt="" />
+          <div className='card__cancel d-flex align-items-center'>
+            <button className='btn btn-outline-light' onClick={onClick?.cancel} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <img src={isHover ? cancelIconHover : cancelIcon} alt="" />
             </button>
           </div>
         </div>
@@ -83,9 +95,12 @@ export function CardBook({ bookData, cardType, onClick }: CardBookProps): JSX.El
               </div>
             </div>
           </div>
-          <div className='card__cancel d-flex align-items-center me-5'>
-            <button className='btn' onClick={onClick?.favorite}>
-              <img src={bookData.isFavorite ? heartActive : heart} alt="" />
+          <div className='card__cancel d-flex align-items-center'>
+            <button className='btn btn-outline-light' onClick={onClick?.favorite} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <img
+                src={isHover ? heart : heartActive}
+                alt=""
+                style={{ width: '20px' }} />
             </button>
           </div>
         </div>

@@ -2,16 +2,24 @@ import { SearchInput } from "../SearchInput"
 import { MainBook } from "../../interfaces/book"
 import Logo from "../../images/logo.png"
 import Favorites from "../../images/heart-icon.png"
+import FavoritesActive from "../../images/heart-icon-active.png"
 import ShopBag from "../../images/shop-bag.png"
 import UserIcon from "../../images/user-icon.png"
 import ShopBagActive from "../../images/shopping-bag-active.png"
-import { getDataBooksLocalStorage } from "../../helpers"
+import { useAppSelector } from "../../hooks"
 
 export function NavBar(): JSX.Element {
+  const { books } = useAppSelector(state => state.newBooks)
   function renderIconCart(): string {
-    const dataLocalStorage = getDataBooksLocalStorage('books')
+    const dataLocalStorage = books.map((book: MainBook) => book)
     const bookWithInCart = dataLocalStorage.some((book: MainBook) => book.inCart === true)
     return bookWithInCart ? ShopBagActive : ShopBag
+  }
+
+  function renderIconFavorites(): string {
+    const dataLocalStorage = books.map((book: MainBook) => book)
+    const bookWithFavorite = dataLocalStorage.some((book: MainBook) => book.isFavorite === true)
+    return bookWithFavorite ? FavoritesActive : Favorites
   }
 
   return (
@@ -21,8 +29,8 @@ export function NavBar(): JSX.Element {
       </a>
       <SearchInput />
       <div className="icon-group d-flex ">
-        <a href="#" className="icon-group__item p-3">
-          <img className="icon-group__img img-fluid" src={Favorites} alt="" />
+        <a href="/favorites" className="icon-group__item p-3">
+          <img className="icon-group__img img-fluid" src={renderIconFavorites()} alt="" />
         </a>
         <a href="/cart" className="icon-group__item p-3">
           <img className="icon-group__img img-fluid" src={renderIconCart()} alt="" />

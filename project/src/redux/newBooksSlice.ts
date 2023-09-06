@@ -75,6 +75,8 @@ export const newBooksSlice = createSlice({
       state.books = action.payload
       if (getDataBooksLocalStorage('books').length !== state.books.length) {
         setDataBooksLocalStorage(action.payload, 'books')
+      } else {
+        state.books = getDataBooksLocalStorage('books')
       }
     })
 

@@ -7,6 +7,7 @@ import { SignIn } from './pages/SignIn'
 import { SignUp } from './pages/SignUp'
 import { Search } from './pages/Search'
 import { Cart } from './pages/Cart'
+import { Favorites } from './pages/Favorites'
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart />
+      },
+      {
+        path: '/favorites',
+        element: <Favorites />
       }
     ]
   }

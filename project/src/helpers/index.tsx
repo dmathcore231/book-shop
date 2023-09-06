@@ -16,7 +16,7 @@ export function _getBookData(data: MainBook[], startIndex: number, endIndex: num
   const result = data.slice(startIndex, endIndex)
   return (
     result.map((book: MainBook) => {
-      return <CardBook key={book.isbn13} bookData={book} cardSize="m" />
+      return <CardBook key={book.isbn13} bookData={book} cardType="mainCard" />
     })
   )
 }

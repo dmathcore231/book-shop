@@ -2,10 +2,11 @@ import { MainBook } from "../interfaces/book"
 
 export interface CardBookProps {
   bookData: MainBook
-  cardSize: 'm' | 'xl'
+  cardType: 'mainCard' | 'cardInCart' | 'cardInFavorites'
   onClick?: {
     cancel?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
     decrement?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
     increment?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+    favorite?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   }
 }

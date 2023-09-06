@@ -34,7 +34,7 @@ export function Cart(): JSX.Element {
         dispatch(changeCounterValue({ value: "increment", book: data as MainBook }))
       }
 
-      return <CardBook key={book.isbn13} bookData={book} cardSize="xl" onClick={{ cancel: handleClickCancel, decrement: handleClickDecrement, increment: handleClickIncrement }} />
+      return <CardBook key={book.isbn13} bookData={book} cardType="cardInCart" onClick={{ cancel: handleClickCancel, decrement: handleClickDecrement, increment: handleClickIncrement }} />
     })
   }
 

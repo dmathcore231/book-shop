@@ -19,7 +19,7 @@ export function Search(): JSX.Element {
 
   function renderBooks() {
     return findBooks.map((book: MainBook) => {
-      return <CardBook key={book.isbn13} bookData={book} cardSize="m" />
+      return <CardBook key={book.isbn13} bookData={book} cardType="mainCard" />
     })
   }
 

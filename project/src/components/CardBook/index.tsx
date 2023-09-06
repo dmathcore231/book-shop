@@ -2,8 +2,13 @@ import { Link } from 'react-router-dom'
 import { CardBookProps } from '../../interfaces/CardBookProps'
 import { Rating } from '../Rating'
 import cancelIcon from '../../images/Cancel.png'
-export function CardBook({ bookData, cardSize, onClickCancel }: CardBookProps): JSX.Element {
+import IconDecrement from '../../images/Minus.png'
+import IconIncrement from '../../images/Plus.png'
 
+export function CardBook({ bookData, cardSize, onClick }: CardBookProps): JSX.Element {
+  function getNumberFromBookDataPrice() {
+    return (parseFloat(bookData.price.replace('$', '')) * bookData.counterValue).toFixed(2)
+  }
   function cardRender() {
     if (cardSize === 'm') {
       return (
@@ -27,20 +32,30 @@ export function CardBook({ bookData, cardSize, onClickCancel }: CardBookProps): 
           <div className="card__img">
             <img src={bookData.image} alt="" />
           </div>
-          <div className='card__data d-flex flex-column gap-4 justify-content-center' style={{ minWidth: '400px', maxWidth: '450px' }}>
+          <div className='card__data d-flex flex-column gap-4 justify-content-center' style={{ minWidth: '400px', maxWidth: '400px' }}>
             <div className='card__title'>
               <h5> {bookData.title}</h5>
             </div>
             <div className='card__post-title text-muted'>
               {bookData.authors}
             </div>
-            <div className='card__counter'> 1 </div>
+            <div className='counter d-flex gap-2'>
+              <button className='counter__decrement btn' onClick={onClick?.decrement}>
+                <img src={IconDecrement} alt="Minus" />
+              </button>
+              <div className='counter__value d-flex align-items-center justify-content-center' style={{ width: '2rem' }}>
+                <h4 className='m-0' >{bookData.counterValue}</h4>
+              </div>
+              <button className='counter__increment btn' onClick={onClick?.increment}>
+                <img src={IconIncrement} alt="Plus" />
+              </button>
+            </div>
           </div>
-          <div className='card__price d-flex align-items-center'>
-            <h3>{bookData.price}</h3>
+          <div className='card__price d-flex align-items-center' style={{ minWidth: '120px' }}>
+            <h3>${getNumberFromBookDataPrice()}</h3>
           </div>
           <div className='card__cancel d-flex align-items-center me-5'>
-            <button className='btn' onClick={onClickCancel}>
+            <button className='btn' onClick={onClick?.cancel}>
               <img src={cancelIcon} alt="" />
             </button>
           </div>

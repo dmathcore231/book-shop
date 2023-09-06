@@ -1,9 +1,11 @@
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import { PaginationProps } from "../../interfaces/PaginationProps"
+import './styles.scss'
 
-export function Pagination({ pageUrl, pagesCounter }: PaginationProps): JSX.Element {
+export function Pagination({ pageUrl, pagesCounter, page }: PaginationProps): JSX.Element {
   const pagination = []
   let pageNumber = 1
+  const pageTypeNumber = Number(page)
 
   while (pageNumber <= pagesCounter) {
     pagination.push(
@@ -24,15 +26,15 @@ export function Pagination({ pageUrl, pagesCounter }: PaginationProps): JSX.Elem
     <nav className="navbar">
       <ul className="pagination ">
         <li className="page-item">
-          <a className="page-link" href="#" aria-label="Previous">
+          <Link to={`/${pageUrl}/${pageTypeNumber - 1 === 0 ? 1 : pageTypeNumber - 1}`} className="page-link" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
-          </a>
+          </Link>
         </li>
         {pagination}
         <li className="page-item">
-          <a className="page-link" href="#" aria-label="Next">
+          <Link to={`/${pageUrl}/${pageTypeNumber === pagesCounter ? pageTypeNumber : pageTypeNumber + 1}`} className="page-link" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

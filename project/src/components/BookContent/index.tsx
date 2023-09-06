@@ -3,13 +3,15 @@ import { Rating } from "../Rating"
 import heart from '../../images/heartDefault.png'
 import heartActive from '../../images/heartActive.png'
 import { LinkBackPage } from "../LinkBackPage"
+import { Tabs } from '../Tabs'
 
 export function BookContent({ onClickFavorite, onClickCart, data }: BookContentProps): JSX.Element {
+
   return (
     <div className="book d-flex flex-column gap-3">
       <LinkBackPage />
       <h3 className="book__title pb-3">{data.title}</h3>
-      <div className="book__content">
+      <div className="book__content d-flex flex-column gap-3">
         <div className="book-card d-flex justify-content-between">
           <div className="book-card__img-wrapper d-flex">
             <img className="book-card__img" src={data.image} alt="" />
@@ -19,8 +21,7 @@ export function BookContent({ onClickFavorite, onClickCart, data }: BookContentP
               </button>
             </div>
           </div>
-
-          <div className="book-card-preview d-flex flex-column justify-content-between">
+          <div className="book-card-preview d-flex flex-column justify-content-between w-50 ps-5 ">
             <div className="book-card-preview__item d-flex justify-content-between gap-5">
               <div className="book-card-preview__price"><h4>{data?.price}</h4></div>
               <div className="book-card-preview__rating">
@@ -50,20 +51,8 @@ export function BookContent({ onClickFavorite, onClickCart, data }: BookContentP
             <div className="book-card-preview__footer text-center">Preview book</div>
           </div>
         </div>
-        <div className="book-info">
-          <ul className="nav nav-underline">
-            <li className="nav-item">
-              <a className="nav-link text-dark active" href="#">Description</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-dark" href="#">Authors</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-dark" href="#">Reviews</a>
-            </li>
-          </ul>
-        </div>
       </div>
+      <Tabs data={data} />
     </div>
   )
 }

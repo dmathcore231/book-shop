@@ -24,13 +24,14 @@ export function _getBookData(data: MainBook[], startIndex: number, endIndex: num
 export function calculateTotal(data: MainBook[]): { totalBookPrice: number; vat: number; total: number } {
   const bookInCart = [...data].filter((book) => book.inCart === true)
   const totalBookPrice = bookInCart.reduce((total, book) => {
-    const price = parseFloat(book.price.replace('$', ''))
+    const price = (parseFloat(book.price.replace('$', '')) * book.counterValue)
     return total + price
   }, 0)
-  const vat = parseFloat((totalBookPrice * 0.12).toFixed(2))
-  const total = parseFloat((totalBookPrice + vat).toFixed(2))
+  const roundedTotalBookPrice = parseFloat(totalBookPrice.toFixed(2))
+  const vat = parseFloat((roundedTotalBookPrice * 0.12).toFixed(2))
+  const total = parseFloat((roundedTotalBookPrice + vat).toFixed(2))
   return {
-    totalBookPrice,
+    totalBookPrice: roundedTotalBookPrice,
     vat,
     total,
   }

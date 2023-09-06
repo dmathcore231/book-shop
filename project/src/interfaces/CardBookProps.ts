@@ -3,5 +3,9 @@ import { MainBook } from "../interfaces/book"
 export interface CardBookProps {
   bookData: MainBook
   cardSize: 'm' | 'xl'
-  onClickCancel?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  onClick?: {
+    cancel?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+    decrement?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+    increment?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  }
 }

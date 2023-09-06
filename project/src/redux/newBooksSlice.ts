@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { requestNewBooks, requestBookByIsbn13 } from "../services/books"
-import { NewBooksState, MainBook } from "../interfaces/book"
+import { NewBooksState, MainBook, StateChangeCounter } from "../interfaces/book"
 import { getDataBooksLocalStorage, setDataBooksLocalStorage } from "../helpers/index"
 
 export const fetchNewBooks = createAsyncThunk('books/fetchNewBooks',
@@ -10,7 +10,7 @@ export const fetchNewBooks = createAsyncThunk('books/fetchNewBooks',
     const booksPromises = listIsbn13.map((isbn13) => requestBookByIsbn13(isbn13))
     const dataExtensionBooks = await Promise.all(booksPromises)
     const addFavorites = dataExtensionBooks.map((book) => {
-      return { ...book, isFavorite: false, inCart: false }
+      return { ...book, isFavorite: false, inCart: false, counterValue: 1 }
     })
     return addFavorites as MainBook[]
   })
@@ -43,6 +43,22 @@ export const newBooksSlice = createSlice({
       const index = dataInLocalStorage.findIndex((book) => book.isbn13 === dataCart.isbn13)
       if (index !== -1) {
         dataInLocalStorage[index].inCart = !dataInLocalStorage[index].inCart
+        dataInLocalStorage[index].counterValue = 1
+        setDataBooksLocalStorage(dataInLocalStorage, 'books')
+        state.books = [...dataInLocalStorage]
+      }
+    },
+
+    changeCounterValue: (state, action: PayloadAction<StateChangeCounter>,) => {
+      const { book, value } = action.payload
+      const dataInLocalStorage = getDataBooksLocalStorage('books')
+      const index = dataInLocalStorage.findIndex((item) => item.isbn13 === book.isbn13)
+      if (index !== -1 && value === 'decrement' && dataInLocalStorage[index].counterValue > 1) {
+        dataInLocalStorage[index].counterValue -= 1
+        setDataBooksLocalStorage(dataInLocalStorage, 'books')
+        state.books = [...dataInLocalStorage]
+      } else if (index !== -1 && value === 'increment') {
+        dataInLocalStorage[index].counterValue += 1
         setDataBooksLocalStorage(dataInLocalStorage, 'books')
         state.books = [...dataInLocalStorage]
       }
@@ -70,7 +86,7 @@ export const newBooksSlice = createSlice({
 })
 
 export const newBooksReducer = newBooksSlice.reducer
-export const { changeMyFavorites, changeCart } = newBooksSlice.actions
+export const { changeMyFavorites, changeCart, changeCounterValue } = newBooksSlice.actions
 
 
 

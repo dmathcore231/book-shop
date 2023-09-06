@@ -45,7 +45,7 @@ export function Main(): JSX.Element {
         {renderBooks()}
       </div>
       <div className="new-releases__pagination d-flex justify-content-center pt-4">
-        <Pagination pageUrl="pages" pagesCounter={Math.ceil(books.length / limit)} />
+        <Pagination pageUrl="pages" pagesCounter={Math.ceil(books.length / limit)} page={pageNumber} />
       </div>
       <div className="new-releases__subscribe d-flex flex-column align-items-start m-3 p-3 gap-3 bg-light">
         <h3 className="new-releases__subscribe-title">SUBSCRIBE TO NEWSLETTER</h3>

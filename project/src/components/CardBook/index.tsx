@@ -23,6 +23,7 @@ export function CardBook({ bookData, cardType, onClick }: CardBookProps): JSX.El
   function getNumberFromBookDataPrice() {
     return (parseFloat(bookData.price.replace('$', '')) * bookData.counterValue).toFixed(2)
   }
+
   function cardRender() {
     if (cardType === 'mainCard') {
       return (
@@ -34,7 +35,7 @@ export function CardBook({ bookData, cardType, onClick }: CardBookProps): JSX.El
             <div className="card__footer d-flex justify-content-between">
               <h5 className="card__price">{bookData.price}</h5>
               <div className="card__rating">
-                <Rating rating={bookData.rating} />
+                <Rating ratingValue={bookData.rating} />
               </div>
             </div>
           </div>
@@ -46,30 +47,30 @@ export function CardBook({ bookData, cardType, onClick }: CardBookProps): JSX.El
           <div className="card__img">
             <img src={bookData.image} alt="" />
           </div>
-          <div className='card__data d-flex flex-column gap-4 justify-content-center' style={{ minWidth: '400px', maxWidth: '400px' }}>
-            <div className='card__title'>
+          <div className="card__data d-flex flex-column gap-4 justify-content-center" style={{ minWidth: '400px', maxWidth: '400px' }}>
+            <div className="card__title">
               <h5> {bookData.title}</h5>
             </div>
-            <div className='card__post-title text-muted'>
+            <div className="card__post-title text-muted">
               {bookData.authors}
             </div>
-            <div className='counter d-flex gap-2'>
-              <button className='counter__decrement btn' onClick={onClick?.decrement}>
+            <div className="counter d-flex gap-2">
+              <button className="btn counter__decrement " onClick={onClick?.decrement}>
                 <img src={IconDecrement} alt="Minus" />
               </button>
-              <div className='counter__value d-flex align-items-center justify-content-center' style={{ width: '2rem' }}>
-                <h4 className='m-0' >{bookData.counterValue}</h4>
+              <div className="counter__value d-flex align-items-center justify-content-center" style={{ width: '2rem' }}>
+                <h4 className="m-0" >{bookData.counterValue}</h4>
               </div>
-              <button className='counter__increment btn' onClick={onClick?.increment}>
+              <button className="btn counter__increment" onClick={onClick?.increment}>
                 <img src={IconIncrement} alt="Plus" />
               </button>
             </div>
           </div>
-          <div className='card__price d-flex align-items-center' style={{ minWidth: '120px' }}>
+          <div className="card__price d-flex align-items-center" style={{ minWidth: '120px' }}>
             <h3>${getNumberFromBookDataPrice()}</h3>
           </div>
-          <div className='card__cancel d-flex align-items-center'>
-            <button className='btn btn-outline-light' onClick={onClick?.cancel} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <div className="card__cancel d-flex align-items-center">
+            <button className="btn btn-outline-light" onClick={onClick?.cancel} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
               <img src={isHover ? cancelIconHover : cancelIcon} alt="" />
             </button>
           </div>
@@ -81,22 +82,22 @@ export function CardBook({ bookData, cardType, onClick }: CardBookProps): JSX.El
           <div className="card__img">
             <img src={bookData.image} alt="" />
           </div>
-          <div className='card__data d-flex flex-column gap-4 justify-content-center' style={{ minWidth: '400px', maxWidth: '400px' }}>
-            <div className='card__title'>
+          <div className="card__data d-flex flex-column gap-4 justify-content-center" style={{ minWidth: '400px', maxWidth: '400px' }}>
+            <div className="card__title">
               <h5> {bookData.title}</h5>
             </div>
-            <div className='card__post-title text-muted'>
+            <div className="card__post-title text-muted">
               {bookData.authors}
             </div>
-            <div className='card__price d-flex align-items-center justify-content-between' style={{ minWidth: '120px' }}>
+            <div className="card__price d-flex align-items-center justify-content-between" style={{ minWidth: '120px' }}>
               <h3>{bookData.price}</h3>
-              <div className='card__rating'>
-                <Rating rating={bookData.rating} />
+              <div className="card__rating">
+                <Rating ratingValue={bookData.rating} />
               </div>
             </div>
           </div>
-          <div className='card__cancel d-flex align-items-center'>
-            <button className='btn btn-outline-light' onClick={onClick?.favorite} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <div className="card__cancel d-flex align-items-center">
+            <button className="btn btn-outline-light" onClick={onClick?.favorite} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
               <img
                 src={isHover ? heart : heartActive}
                 alt=""

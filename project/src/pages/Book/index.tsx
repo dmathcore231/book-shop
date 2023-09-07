@@ -1,13 +1,13 @@
-import { useEffect } from "react"
-import { useAppDispatch, useAppSelector } from "../../hooks"
-import { getBook } from "../../redux/bookByIsbn13Slice"
-import { useParams } from "react-router-dom"
-import { Spinner } from "../../components/Spinner"
-import { Error } from "../../components/Error"
-import { changeMyFavorites, changeCart } from "../../redux/newBooksSlice"
-import { MainBook } from "../../types/interfaces/Book"
-import { getDataLocalStorage } from "../../helpers"
-import { BookContent } from "../../components/BookContent"
+import { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '../../hooks'
+import { getBook } from '../../redux/bookByIsbn13Slice'
+import { useParams } from 'react-router-dom'
+import { Spinner } from '../../components/Spinner'
+import { Error } from '../../components/Error'
+import { changeMyFavorites, changeCart } from '../../redux/newBooksSlice'
+import { MainBook } from '../../types/interfaces/Book'
+import { getDataLocalStorage } from '../../helpers'
+import { BookContent } from '../../components/BookContent'
 
 export function Book(): JSX.Element {
   const { isbn13 = '' } = useParams()
@@ -25,7 +25,8 @@ export function Book(): JSX.Element {
 
   if (error) {
     return <Error>
-      Oops! Something went wrong! Try later</Error>
+      Oops! Something went wrong! Try later
+    </Error>
   }
 
   function renderBook() {
@@ -43,7 +44,7 @@ export function Book(): JSX.Element {
     }
 
     return (
-      <BookContent onClickFavorite={handleClickAddMyFavorites} onClickCart={handleClickAddCart} data={data as MainBook} />
+      <BookContent onClick={{ ClickCart: handleClickAddCart, ClickFavorite: handleClickAddMyFavorites }} data={data as MainBook} />
     )
   }
 

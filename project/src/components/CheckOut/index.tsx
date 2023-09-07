@@ -1,6 +1,6 @@
-import { CheckOutProps } from "../../types/interfaces/CheckOutProps"
+import { CheckOutProps } from '../../types/interfaces/CheckOutProps'
 
-export function CheckOut({ totalBookPrice, vat, total }: CheckOutProps): JSX.Element {
+export function CheckOut({ totalBookPrice, vat, totalSum }: CheckOutProps): JSX.Element {
   return (
     <div className="check-out d-flex flex-column w-25 gap-2">
       <div className="check-out__item d-flex justify-content-between">
@@ -13,7 +13,7 @@ export function CheckOut({ totalBookPrice, vat, total }: CheckOutProps): JSX.Ele
       </div>
       <div className="check-out__item d-flex justify-content-between">
         <h3 className="check-out__title">Total:</h3>
-        <h3 className="check-out__value">${total}</h3>
+        <h3 className="check-out__value">${totalSum}</h3>
       </div>
       <button className="btn btn-dark ps-5 pe-5 pb-3 pt-3"> CHECK OUT</button>
     </div>

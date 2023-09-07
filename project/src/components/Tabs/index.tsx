@@ -9,7 +9,7 @@ export function Tabs({ data }: TabsProps): JSX.Element {
     setSelectBookInfo(option)
   }
 
-  const getBookInfo = (): string => {
+  const getDataBookInfo = (): string => {
     switch (selectBookInfo) {
       case 'description':
         return data.desc
@@ -56,7 +56,7 @@ export function Tabs({ data }: TabsProps): JSX.Element {
         </ul>
       </nav>
       <div className="book-info">
-        <p className="book-info__text">{getBookInfo()}</p>
+        <p className="book-info__text">{getDataBookInfo()}</p>
       </div>
     </>
   )

@@ -1,4 +1,4 @@
-import { formInputProps } from "../../types/interfaces/FormInputProps"
+import { formInputProps } from '../../types/interfaces/FormInputProps'
 
 export function FormInput({ htmlFor, children, type, id, placeholder, value, required, className, onChange }: formInputProps): JSX.Element {
   return (

@@ -6,7 +6,7 @@ interface MainProps {
 
 export function Main(props: MainProps): JSX.Element {
   return (
-    <main className='container pt-5 pb-5'>
+    <main className="container pt-5 pb-5">
       {props.children}
     </main>
   )

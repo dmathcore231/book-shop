@@ -7,7 +7,7 @@ export const fetchNewBooks = createAsyncThunk('books/fetchNewBooks',
   async (searchQuery?: string | undefined) => {
     const { books } = await requestNewBooks(searchQuery)
     const listIsbn13 = books.map((book) => book.isbn13) as string[]
-    const booksPromises = listIsbn13.map((isbn13: string) => requestBookByIsbn13(isbn13))
+    const booksPromises = listIsbn13.map((id: string) => requestBookByIsbn13(id))
     const dataExtensionBooks = await Promise.all(booksPromises)
     const addFavorites = dataExtensionBooks.map((book: MainBook) => {
       return { ...book, isFavorite: false, inCart: false, counterValue: 1 }

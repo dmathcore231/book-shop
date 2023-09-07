@@ -1,4 +1,4 @@
 
 export interface RatingProps {
-  rating: string
+  ratingValue: string
 }

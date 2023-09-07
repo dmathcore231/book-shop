@@ -29,7 +29,7 @@ export function SearchInput(): JSX.Element {
         value={searchQuery}
         onChange={(event) => setSearchQuery(event.target.value)}
         required />
-      <button className='btn' type="submit">
+      <button className="btn" type="submit">
         <img className="search-input__img" src="/src/images/Icon-Search.png" alt="" />
       </button>
     </form>

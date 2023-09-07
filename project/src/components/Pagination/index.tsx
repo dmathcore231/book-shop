@@ -1,5 +1,5 @@
-import { Link, NavLink } from "react-router-dom"
-import { PaginationProps } from "../../types/interfaces/PaginationProps"
+import { Link, NavLink } from 'react-router-dom'
+import { PaginationProps } from '../../types/interfaces/PaginationProps'
 import './styles.scss'
 
 export function Pagination({ pageUrl, pagesCounter, page }: PaginationProps): JSX.Element {
@@ -26,13 +26,16 @@ export function Pagination({ pageUrl, pagesCounter, page }: PaginationProps): JS
     <nav className="navbar">
       <ul className="pagination ">
         <li className="page-item">
-          <Link to={`/${pageUrl}/${pageTypeNumber - 1 === 0 ? 1 : pageTypeNumber - 1}`} className="page-link" aria-label="Previous">
+          <Link to={`/${pageUrl}/${pageTypeNumber - 1 === 0 ? 1 : pageTypeNumber - 1}`} className="page-link"
+            aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
           </Link>
         </li>
         {pagination}
         <li className="page-item">
-          <Link to={`/${pageUrl}/${pageTypeNumber === pagesCounter ? pageTypeNumber : pageTypeNumber + 1}`} className="page-link" aria-label="Next">
+          <Link to={`/${pageUrl}/${pageTypeNumber === pagesCounter ? pageTypeNumber : pageTypeNumber + 1}`}
+            className="page-link"
+            aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </Link>
         </li>

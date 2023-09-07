@@ -1,7 +1,9 @@
 import { MainBook } from "./Book"
 
 export interface BookContentProps {
-  onClickFavorite: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
-  onClickCart: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  onClick: {
+    ClickFavorite: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+    ClickCart: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  }
   data: MainBook
 }

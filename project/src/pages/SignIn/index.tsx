@@ -1,4 +1,5 @@
-import { FormInput } from "../../components/FormInput"
+import { FormInput } from '../../components/FormInput'
+import { Link } from 'react-router-dom'
 
 export function SignIn(): JSX.Element {
   return (
@@ -19,7 +20,11 @@ export function SignIn(): JSX.Element {
             id="input-password"
             placeholder="Your password"
           />
-          <a href="#" className="forgot-password text-dark link-underline-light"> Forgot your password?</a>
+          <Link
+            to="#"
+            className="link text-dark link-underline-light">
+            Forgot your password?
+          </Link>
           <button type="submit" className="btn btn-dark">Sign In</button>
         </form>
       </div>

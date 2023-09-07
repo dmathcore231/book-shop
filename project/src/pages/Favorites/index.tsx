@@ -1,10 +1,10 @@
-import { useAppSelector } from "../../hooks"
-import { useAppDispatch } from "../../hooks"
-import { Error } from "../../components/Error"
-import { CardBook } from "../../components/CardBook"
-import { MainBook } from "../../types/interfaces/Book"
-import { changeMyFavorites } from "../../redux/newBooksSlice"
-import { LinkBackPage } from "../../components/LinkBackPage"
+import { useAppSelector } from '../../hooks'
+import { useAppDispatch } from '../../hooks'
+import { Error } from '../../components/Error'
+import { CardBook } from '../../components/CardBook'
+import { MainBook } from '../../types/interfaces/Book'
+import { changeMyFavorites } from '../../redux/newBooksSlice'
+import { LinkBackPage } from '../../components/LinkBackPage'
 
 export function Favorites(): JSX.Element {
   const { books } = useAppSelector(state => state.newBooks)

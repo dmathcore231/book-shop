@@ -1,9 +1,9 @@
-import { useParams } from "react-router-dom"
-import { useEffect } from "react"
-import { useAppDispatch, useAppSelector } from "../../hooks/index"
-import { fetchSearch } from "../../redux/searchSlice"
-import { MainBook } from "../../types/interfaces/Book"
-import { CardBook } from "../../components/CardBook"
+import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '../../hooks/index'
+import { fetchSearch } from '../../redux/searchSlice'
+import { MainBook } from '../../types/interfaces/Book'
+import { CardBook } from '../../components/CardBook'
 
 export function Search(): JSX.Element {
   const { searchQuery } = useParams()
@@ -11,6 +11,7 @@ export function Search(): JSX.Element {
   const { data } = useAppSelector(state => state.search)
   const { books } = useAppSelector(state => state.newBooks)
   const findBooks = books.filter((book: MainBook) => book.title.includes(searchQuery as string))
+  console.log(data)
 
   useEffect(() => {
     dispatch(fetchSearch(searchQuery as string))
@@ -21,8 +22,6 @@ export function Search(): JSX.Element {
       return <CardBook key={book.isbn13} bookData={book} cardType="mainCard" />
     })
   }
-
-  console.log(data)
 
   return (
     <div className="search">

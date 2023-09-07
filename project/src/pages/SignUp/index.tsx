@@ -1,6 +1,6 @@
-import { FormInput } from "../../components/FormInput"
-import { useState } from "react"
-import { UserData } from "../../types/interfaces/UserData"
+import { FormInput } from '../../components/FormInput'
+import { useState } from 'react'
+import { UserData } from '../../types/interfaces/UserData'
 
 export function SignUp(): JSX.Element {
   const [userName, setUserName] = useState('')
@@ -11,11 +11,11 @@ export function SignUp(): JSX.Element {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
+
     if (password !== confirmPassword) {
       alert('Passwords do not match')
       document.getElementById('input-password')?.classList.add('is-invalid')
       document.getElementById('input-confirm-password')?.classList.add('is-invalid')
-      return
     } else {
       const userData: UserData = {
         userName,
@@ -27,6 +27,7 @@ export function SignUp(): JSX.Element {
       document.getElementById('input-password')?.classList.remove('is-invalid')
       document.getElementById('input-confirm-password')?.classList.remove('is-invalid')
     }
+
     setUserName('')
     setEmail('')
     setPassword('')

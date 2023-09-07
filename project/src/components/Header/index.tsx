@@ -1,4 +1,3 @@
-
 import { ReactNode } from 'react'
 
 interface HeaderProps {
@@ -7,7 +6,7 @@ interface HeaderProps {
 
 export function Header(props: HeaderProps): JSX.Element {
   return (
-    <header className='header container'>
+    <header className="header container">
       {props.children}
     </header>
   )

@@ -1,12 +1,12 @@
-import { CardBook } from "../../components/CardBook"
+import { CardBook } from '../../components/CardBook'
 import { MainBook } from '../../types/interfaces/Book'
-import { useAppSelector } from "../../hooks"
+import { useAppSelector } from '../../hooks'
 import { changeCart, changeCounterValue } from '../../redux/newBooksSlice'
-import { useAppDispatch } from "../../hooks"
-import { calculateTotal } from "../../helpers"
-import { CheckOut } from "../../components/CheckOut"
-import { Error } from "../../components/Error"
-import { LinkBackPage } from "../../components/LinkBackPage"
+import { useAppDispatch } from '../../hooks'
+import { calculateTotal } from '../../helpers'
+import { CheckOut } from '../../components/CheckOut'
+import { Error } from '../../components/Error'
+import { LinkBackPage } from '../../components/LinkBackPage'
 
 export function Cart(): JSX.Element {
   const { books } = useAppSelector(state => state.newBooks)
@@ -34,7 +34,11 @@ export function Cart(): JSX.Element {
         dispatch(changeCounterValue({ value: "increment", book: data as MainBook }))
       }
 
-      return <CardBook key={book.isbn13} bookData={book} cardType="cardInCart" onClick={{ cancel: handleClickCancel, decrement: handleClickDecrement, increment: handleClickIncrement }} />
+      return <CardBook
+        key={book.isbn13}
+        bookData={book}
+        cardType="cardInCart"
+        onClick={{ cancel: handleClickCancel, decrement: handleClickDecrement, increment: handleClickIncrement }} />
     })
   }
 
@@ -46,7 +50,10 @@ export function Cart(): JSX.Element {
         {renderCard()}
       </div>
       <div className="cart__footer d-flex justify-content-end pt-5">
-        <CheckOut totalBookPrice={totalValue.totalBookPrice} vat={totalValue.vat} total={totalValue.total} />
+        <CheckOut
+          totalBookPrice={totalValue.totalBookPrice}
+          vat={totalValue.vat}
+          totalSum={totalValue.total} />
       </div>
     </div>
   )

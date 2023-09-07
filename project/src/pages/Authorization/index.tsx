@@ -1,5 +1,5 @@
-import { Outlet } from "react-router-dom"
-import { NavBarAuthorization } from "../../components/NavBarAuthorization"
+import { Outlet } from 'react-router-dom'
+import { NavBarAuthorization } from '../../components/NavBarAuthorization'
 export function Authorization(): JSX.Element {
   return (
     <>

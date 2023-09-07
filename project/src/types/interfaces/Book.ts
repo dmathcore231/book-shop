@@ -19,6 +19,10 @@ export interface NewBooksState {
   limit: number
 }
 
+export interface SearchState {
+  data: NewBooks[]
+}
+
 // isbn13
 
 export interface BookByIsbn13 {

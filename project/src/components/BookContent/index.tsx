@@ -1,4 +1,4 @@
-import { BookContentProps } from "../../interfaces/BookContentProps"
+import { BookContentProps } from "../../types/interfaces/BookContentProps"
 import { Rating } from "../Rating"
 import heart from '../../images/heartDefault.png'
 import heartActive from '../../images/heartActive.png'

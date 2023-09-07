@@ -1,12 +1,12 @@
 import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../hooks"
-import { fetchBook } from "../../redux/bookByIsbn13Slice"
+import { getBook } from "../../redux/bookByIsbn13Slice"
 import { useParams } from "react-router-dom"
 import { Spinner } from "../../components/Spinner"
 import { Error } from "../../components/Error"
 import { changeMyFavorites, changeCart } from "../../redux/newBooksSlice"
-import { MainBook } from "../../interfaces/book"
-import { getDataBooksLocalStorage } from "../../helpers"
+import { MainBook } from "../../types/interfaces/Book"
+import { getDataLocalStorage } from "../../helpers"
 import { BookContent } from "../../components/BookContent"
 
 export function Book(): JSX.Element {
@@ -16,7 +16,7 @@ export function Book(): JSX.Element {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    dispatch(fetchBook(isbn13))
+    dispatch(getBook(isbn13))
   }, [dispatch, isbn13])
 
   if (loading) {
@@ -29,10 +29,10 @@ export function Book(): JSX.Element {
   }
 
   function renderBook() {
-    const dataLocalStorage = getDataBooksLocalStorage('books')
+    const dataLocalStorage = getDataLocalStorage('books')
     const data = dataLocalStorage.length === books.length
-      ? dataLocalStorage.find((book) => book.isbn13 === isbn13)
-      : books.find((book) => book.isbn13 === isbn13)
+      ? dataLocalStorage.find((book: MainBook) => book.isbn13 === isbn13)
+      : books.find((book: MainBook) => book.isbn13 === isbn13)
 
     const handleClickAddMyFavorites = () => {
       dispatch(changeMyFavorites(data as MainBook))

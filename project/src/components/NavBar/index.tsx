@@ -1,5 +1,5 @@
 import { SearchInput } from "../SearchInput"
-import { MainBook } from "../../interfaces/book"
+import { MainBook } from "../../types/interfaces/Book"
 import Logo from "../../images/logo.png"
 import Favorites from "../../images/heart-icon.png"
 import FavoritesActive from "../../images/heart-icon-active.png"

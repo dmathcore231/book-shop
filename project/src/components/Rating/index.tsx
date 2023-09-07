@@ -1,6 +1,6 @@
 import activeStar from '../../images/ActiveStar.png'
 import mutedStar from '../../images/Star.png'
-import { RatingProps } from '../../interfaces/RatingProps'
+import { RatingProps } from '../../types/interfaces/RatingProps'
 
 export function Rating({ rating }: RatingProps) {
   const activeStars = parseInt(rating)

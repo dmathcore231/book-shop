@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks"
 import { fetchNewBooks } from "../../redux/newBooksSlice"
 import { Spinner } from "../../components/Spinner"
 import { Error } from "../../components/Error"
-import { getDataBooksLocalStorage } from "../../helpers"
+import { getDataLocalStorage } from "../../helpers"
 import { useParams } from "react-router-dom"
 import { _getBookData } from "../../helpers/index"
 
@@ -18,7 +18,7 @@ export function Main(): JSX.Element {
   }, [dispatch])
 
   function renderBooks() {
-    const dataLocalStorage = getDataBooksLocalStorage('books')
+    const dataLocalStorage = getDataLocalStorage('books')
     const startIndex = (Number(pageNumber) - 1) * limit
     const endIndex = startIndex + limit
 

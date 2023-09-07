@@ -1,5 +1,6 @@
 import { FormInput } from "../../components/FormInput"
 import { useState } from "react"
+import { UserData } from "../../types/interfaces/UserData"
 
 export function SignUp(): JSX.Element {
   const [userName, setUserName] = useState('')
@@ -11,16 +12,20 @@ export function SignUp(): JSX.Element {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (password !== confirmPassword) {
-      // Заглушка на input ошибку
       alert('Passwords do not match')
+      document.getElementById('input-password')?.classList.add('is-invalid')
+      document.getElementById('input-confirm-password')?.classList.add('is-invalid')
       return
     } else {
-      const userData = {
+      const userData: UserData = {
         userName,
         email,
-        password
+        password,
+        id: crypto.randomUUID()
       }
       console.log(userData)
+      document.getElementById('input-password')?.classList.remove('is-invalid')
+      document.getElementById('input-confirm-password')?.classList.remove('is-invalid')
     }
     setUserName('')
     setEmail('')
@@ -57,6 +62,7 @@ export function SignUp(): JSX.Element {
             placeholder="Your name"
             value={userName}
             onChange={handleUserNameChange}
+            required={true}
           />
           <FormInput
             htmlFor="input-email"
@@ -66,6 +72,7 @@ export function SignUp(): JSX.Element {
             placeholder="Your email"
             value={email}
             onChange={handleEmailChange}
+            required={true}
           />
           <FormInput
             htmlFor="input-password"
@@ -75,6 +82,7 @@ export function SignUp(): JSX.Element {
             placeholder="Your password"
             value={password}
             onChange={handlePasswordChange}
+            required={true}
           />
           <FormInput
             htmlFor="input-confirm-password"
@@ -84,6 +92,7 @@ export function SignUp(): JSX.Element {
             placeholder="Confirm your password"
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
+            required={true}
           />
           <button type="submit" className="btn btn-dark">Sign Up</button>
         </form>

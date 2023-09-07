@@ -1,4 +1,4 @@
-import { MainBook } from "../interfaces/book"
+import { MainBook } from "./Book"
 
 export interface BookContentProps {
   onClickFavorite: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void

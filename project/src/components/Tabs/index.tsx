@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { TabsProps } from "../../interfaces/TabsProps"
+import { TabsProps } from "../../types/interfaces/TabsProps"
 import { useState } from "react"
 
 export function Tabs({ data }: TabsProps): JSX.Element {

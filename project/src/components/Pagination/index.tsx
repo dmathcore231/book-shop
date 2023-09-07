@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom"
-import { PaginationProps } from "../../interfaces/PaginationProps"
+import { PaginationProps } from "../../types/interfaces/PaginationProps"
 import './styles.scss'
 
 export function Pagination({ pageUrl, pagesCounter, page }: PaginationProps): JSX.Element {

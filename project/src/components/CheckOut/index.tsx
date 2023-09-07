@@ -1,4 +1,4 @@
-import { CheckOutProps } from "../../interfaces/CheckOutProps"
+import { CheckOutProps } from "../../types/interfaces/CheckOutProps"
 
 export function CheckOut({ totalBookPrice, vat, total }: CheckOutProps): JSX.Element {
   return (

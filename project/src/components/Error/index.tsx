@@ -1,4 +1,4 @@
-import { ErrorProps } from '../../interfaces/ErrorProps'
+import { ErrorProps } from '../../types/interfaces/ErrorProps'
 
 export function Error({ children }: ErrorProps): JSX.Element {
   return (

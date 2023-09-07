@@ -1,5 +1,5 @@
 import { CardBook } from "../../components/CardBook"
-import { MainBook } from '../../interfaces/book'
+import { MainBook } from '../../types/interfaces/Book'
 import { useAppSelector } from "../../hooks"
 import { changeCart, changeCounterValue } from '../../redux/newBooksSlice'
 import { useAppDispatch } from "../../hooks"
@@ -14,7 +14,7 @@ export function Cart(): JSX.Element {
   const totalValue = calculateTotal(books)
 
   function renderCard() {
-    const inCartBooks = books.filter((book) => book.inCart)
+    const inCartBooks = books.filter((book: MainBook) => book.inCart)
     if (inCartBooks.length === 0) {
       return <Error>Cart is empty</Error>
     }
@@ -25,12 +25,12 @@ export function Cart(): JSX.Element {
       }
 
       const handleClickDecrement = () => {
-        const data = books.find((item) => item.isbn13 === book.isbn13)
+        const data = books.find((item: MainBook) => item.isbn13 === book.isbn13)
         dispatch(changeCounterValue({ value: "decrement", book: data as MainBook }))
       }
 
       const handleClickIncrement = () => {
-        const data = books.find((item) => item.isbn13 === book.isbn13)
+        const data = books.find((item: MainBook) => item.isbn13 === book.isbn13)
         dispatch(changeCounterValue({ value: "increment", book: data as MainBook }))
       }
 

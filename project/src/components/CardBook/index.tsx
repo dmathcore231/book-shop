@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { CardBookProps } from '../../interfaces/CardBookProps'
+import { CardBookProps } from '../../types/interfaces/CardBookProps'
 import { Rating } from '../Rating'
 import cancelIcon from '../../images/Cancel.png'
 import IconDecrement from '../../images/Minus.png'

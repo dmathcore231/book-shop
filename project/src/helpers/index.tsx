@@ -1,10 +1,11 @@
-import { MainBook } from "../interfaces/book"
+import { MainBook } from "../types/interfaces/Book"
 import { CardBook } from "../components/CardBook"
-export function setDataBooksLocalStorage(data: MainBook[], name: string): void {
+
+export function setDataLocalStorage(data: MainBook[], name: string): void {
   localStorage.setItem(name, JSON.stringify(data))
 }
 
-export function getDataBooksLocalStorage(name: string): MainBook[] {
+export function getDataLocalStorage(name: string): MainBook[] {
   const data = JSON.parse(localStorage.getItem(name) as string)
   if (!data) {
     return []

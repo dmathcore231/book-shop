@@ -9,5 +9,6 @@ export interface formInputProps {
   value?: string | number
   required?: boolean
   className?: string
+  disabled?: boolean
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }

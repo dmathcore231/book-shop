@@ -1,6 +1,6 @@
 import { formInputProps } from '../../types/interfaces/FormInputProps'
 
-export function FormInput({ htmlFor, children, type, id, placeholder, value, required, className, onChange }: formInputProps): JSX.Element {
+export function FormInput({ htmlFor, children, type, id, placeholder, value, required, className, disabled, onChange }: formInputProps): JSX.Element {
   return (
     <>
       <label htmlFor={htmlFor}><h5>{children}</h5></label>
@@ -12,6 +12,7 @@ export function FormInput({ htmlFor, children, type, id, placeholder, value, req
         value={value}
         onChange={onChange}
         required={required}
+        disabled={disabled}
       />
     </>
   )

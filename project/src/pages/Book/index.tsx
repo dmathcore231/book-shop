@@ -30,7 +30,7 @@ export function Book(): JSX.Element {
   }
 
   function renderBook() {
-    const dataLocalStorage = getDataLocalStorage('books')
+    const dataLocalStorage = getDataLocalStorage('books') as MainBook[]
     const data = dataLocalStorage.length === books.length
       ? dataLocalStorage.find((book: MainBook) => book.isbn13 === isbn13)
       : books.find((book: MainBook) => book.isbn13 === isbn13)

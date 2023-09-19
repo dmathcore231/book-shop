@@ -12,6 +12,13 @@ export function Account(): JSX.Element {
   const [email, setEmail] = useState(data.email)
   const [password, setPassword] = useState(data.password)
 
+  function handleClickCancel() {
+    setNewPassword('')
+    setConfirmNewPassword('')
+    setPassword(data.password)
+    setUserName(data.userName)
+    setEmail(data.email)
+  }
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (newPassword !== confirmNewPassword) {
@@ -131,7 +138,10 @@ export function Account(): JSX.Element {
           <div className="account__item border-top pt-5">
             <div className="account__wrapper d-flex justify-content-end gap-4">
               <button className="btn btn-dark p-3 w-25" type="submit">Save Changes</button>
-              <button className="btn btn-outline-dark p-3 w-25" type="button">Cancel</button>
+              <button className="btn btn-outline-dark p-3 w-25" type="button"
+                onClick={() => { handleClickCancel() }}>
+                Cancel
+              </button>
             </div>
           </div>
         </form>

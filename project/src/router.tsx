@@ -34,11 +34,11 @@ export const router = createBrowserRouter([
             path: '/authorization/sign_in',
             element: isAuthorization() ? <Navigate to='/authorization/account' replace={true} /> : <SignIn />
           },
+          {
+            path: '/authorization/sign_up',
+            element: isAuthorization() ? <Navigate to='/authorization/account' replace={true} /> : <SignUp />
+          },
         ]
-      },
-      {
-        path: '/authorization/sign_up',
-        element: isAuthorization() ? <Navigate to='/authorization/account' replace={true} /> : <SignUp />
       },
       {
         path: '/authorization/account',

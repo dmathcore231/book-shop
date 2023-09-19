@@ -5,3 +5,8 @@ export interface UserData {
   email: string
   password: string
 }
+
+export interface UserDataRequestSignIn {
+  email: string
+  password: string
+}

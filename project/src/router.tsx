@@ -8,6 +8,8 @@ import { SignUp } from './pages/SignUp'
 import { Search } from './pages/Search'
 import { Cart } from './pages/Cart'
 import { Favorites } from './pages/Favorites'
+import { Account } from './pages/Account'
+import { isAuthorization } from './services/auth'
 
 export const router = createBrowserRouter([
   {
@@ -30,13 +32,17 @@ export const router = createBrowserRouter([
         children: [
           {
             path: '/authorization/sign_in',
-            element: <SignIn />
+            element: isAuthorization() ? <Navigate to='/authorization/account' replace={true} /> : <SignIn />
           },
-          {
-            path: '/authorization/sign_up',
-            element: <SignUp />
-          }
         ]
+      },
+      {
+        path: '/authorization/sign_up',
+        element: isAuthorization() ? <Navigate to='/authorization/account' replace={true} /> : <SignUp />
+      },
+      {
+        path: '/authorization/account',
+        element: <Account />
       },
       {
         path: '/search/:searchQuery',

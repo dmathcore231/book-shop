@@ -1,6 +1,7 @@
 import { FormInput } from '../../components/FormInput'
 import { useState } from 'react'
 import { UserData } from '../../types/interfaces/UserData'
+import { setDataLocalStorage } from '../../helpers'
 
 export function SignUp(): JSX.Element {
   const [userName, setUserName] = useState('')
@@ -23,11 +24,11 @@ export function SignUp(): JSX.Element {
         password,
         id: crypto.randomUUID()
       }
-      console.log(userData)
+      setDataLocalStorage(userData, 'userData')
       document.getElementById('input-password')?.classList.remove('is-invalid')
       document.getElementById('input-confirm-password')?.classList.remove('is-invalid')
+      window.location.replace('/authorization/sign_in')
     }
-
     setUserName('')
     setEmail('')
     setPassword('')
